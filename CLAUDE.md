@@ -80,5 +80,8 @@ if `opa` isn't found. It spins up a real `opa run --server` on a free local port
 If the default `input_builder`'s shape ever changes, update `tests/fixtures/example_app/authz.rego`
 and this test's cases to match — see `tests/fixtures/example_app/README.md`.
 
-(No CI workflow yet — see repo TODOs / issues. Licensed GPL-3.0, matching `project_tracking`,
+CI (`.github/workflows/test.yml`) runs the suite on Python 3.11–3.15 with a pinned `opa`, so
+the integration test always runs there: it fails instead of skipping when `CI` is set.
+
+(Licensed GPL-3.0, matching `project_tracking`,
 `project_tracking_cli`, `c3g-oidc`, and `c3g.shiny.authz` — see `LICENSE`.)
