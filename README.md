@@ -17,6 +17,8 @@ for, and this repo's test suite runs the library against a real `opa run --serve
 loaded with an example policy of that shape, asserting its allow/deny outcomes end to end. See
 [CLAUDE.md](CLAUDE.md) for how to run that yourself.
 
+**Pre-1.0:** the API may change between minor versions until a first app has adopted it.
+
 ## Install
 
 ```bash
