@@ -4,11 +4,13 @@ asserts its allow/deny outcomes end to end. This is what backs the claim in READ
 the library is verified against a real OPA server, not just mocked HTTP.
 
 Requires the `opa` CLI on PATH; skips (doesn't fail) if it isn't found, since not every dev
-machine running the rest of the suite will have it installed.
+machine running the rest of the suite will have it installed -- except in CI (the `CI` env var
+GitHub Actions sets), where a missing `opa` must fail the run instead of silently skipping.
 """
 
 from __future__ import annotations
 
+import os
 import shutil
 import socket
 import subprocess
@@ -24,7 +26,7 @@ FIXTURE_DIR = Path(__file__).parent / "fixtures" / "example_app"
 POLICY_PATH = "example_app/authz/allow"
 
 pytestmark = pytest.mark.skipif(
-    shutil.which("opa") is None,
+    shutil.which("opa") is None and not os.environ.get("CI"),
     reason="opa CLI not found on PATH -- install it to run this integration test",
 )
 
