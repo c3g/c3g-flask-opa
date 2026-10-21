@@ -1,0 +1,9 @@
+{
+  "groups": {
+    "admin": ["example-admins"],
+    "upload": ["example-admins", "example-editors", "example-uploaders"],
+    "edit": ["example-admins", "example-editors"],
+    "read": ["example-admins", "example-editors", "example-uploaders", "example-viewers"],
+    "write": ["example-admins", "example-editors"]
+  }
+}

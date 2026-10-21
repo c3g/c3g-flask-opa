@@ -1,0 +1,49 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
+name = "c3g-flask-opa"
+dynamic = ["version"]
+authors = [
+  { name="Paul Stretenowich", email="paul.stretenowich@mcgill.ca" },
+]
+description = "Flask before_request hook that enforces an OPA policy for C3G Tier-3 web apps"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Framework :: Flask",
+]
+dependencies = [
+    "flask>=2.2.2",
+    "requests>=2.28",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "coverage",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/c3g/c3g-flask-opa"
+"Bug Tracker" = "https://github.com/c3g/c3g-flask-opa/issues"
+
+[tool.pdm]
+allow-direct-references = true
+
+[tool.pdm.version]
+source = "file"
+path = "c3g_flask_opa/__version__.py"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+
+[tool.coverage]
+run.branch = true
+run.source = ["c3g_flask_opa"]
