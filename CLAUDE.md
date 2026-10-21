@@ -83,5 +83,15 @@ and this test's cases to match — see `tests/fixtures/example_app/README.md`.
 CI (`.github/workflows/test.yml`) runs the suite on Python 3.11–3.15 with a pinned `opa`, so
 the integration test always runs there: it fails instead of skipping when `CI` is set.
 
+
+## Releasing
+
+Publishing a GitHub Release publishes to PyPI (`.github/workflows/publish.yml`, trusted
+publishing through the `pypi` environment, no API token stored anywhere):
+
+1. In a PR, bump `c3g_flask_opa/__version__.py` (e.g. `0.2.0`) and merge it.
+2. `gh release create v0.2.0 --generate-notes` (or the repo's Releases page). The tag must be
+   `v` + the version in `__version__.py`, or the workflow stops before building.
+
 (Licensed GPL-3.0, matching `project_tracking`,
 `project_tracking_cli`, `c3g-oidc`, and `c3g.shiny.authz` — see `LICENSE`.)
