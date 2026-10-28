@@ -68,7 +68,7 @@ opa = FlaskOPA(app, groups_source=groups_header_from_g(), policy_path="project_t
 ```
 
 `FlaskOPA` reads the OPA sidecar's URL from the `C3G_OPA_URL` environment variable by default,
-falling back to `http://10.0.2.2:8181` — the host-loopback address used throughout
+falling back to `http://127.0.0.1:8181` — OPA runs in the app's own podman pod, per
 `web-app-template`'s deployment docs — or pass `opa_url=` explicitly.
 
 **Fails closed.** Any error reaching OPA (network failure, timeout, non-2xx response,

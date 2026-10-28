@@ -79,3 +79,18 @@ def test_custom_input_builder_is_used():
         client = app.test_client()
         client.get("/thing")
     allow.assert_called_once_with({"custom": "admins"})
+
+
+def test_opa_url_defaults_to_the_pod_local_sidecar(monkeypatch):
+    # OPA runs in the app's own podman pod, so the app reaches it on the pod's loopback.
+    monkeypatch.delenv("C3G_OPA_URL", raising=False)
+    opa = FlaskOPA(Flask(__name__), groups_source=lambda: "admins",
+                   policy_path="test_app/authz/allow")
+    assert opa._client.opa_url == "http://127.0.0.1:8181"
+
+
+def test_opa_url_from_environment(monkeypatch):
+    monkeypatch.setenv("C3G_OPA_URL", "http://opa.example:9999")
+    opa = FlaskOPA(Flask(__name__), groups_source=lambda: "admins",
+                   policy_path="test_app/authz/allow")
+    assert opa._client.opa_url == "http://opa.example:9999"
