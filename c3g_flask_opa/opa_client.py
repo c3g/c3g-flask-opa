@@ -16,8 +16,8 @@ class OPAClient:
     Parameters
     ----------
     opa_url:
-        Base URL of the OPA sidecar, e.g. ``http://10.0.2.2:8181`` -- the host-loopback
-        address used throughout web-app-template's deployment docs.
+        Base URL of the OPA sidecar, e.g. ``http://127.0.0.1:8181`` -- OPA runs in the app's
+        own podman pod, per web-app-template's deployment docs.
     policy_path:
         The rule to query, as a slash-separated path matching the Rego package and rule name
         with dots replaced by slashes -- e.g. package ``project_tracking.authz``, rule

@@ -19,7 +19,7 @@ from flask import Flask, abort, current_app, request
 
 from .opa_client import OPAClient
 
-DEFAULT_OPA_URL = "http://10.0.2.2:8181"
+DEFAULT_OPA_URL = "http://127.0.0.1:8181"
 
 
 def _default_input_builder(groups_header: str) -> dict:
@@ -52,7 +52,7 @@ class FlaskOPA:
         how this maps to a Rego package/rule name. Required.
     opa_url:
         Base URL of the app's local OPA sidecar. Defaults to the `C3G_OPA_URL` environment
-        variable, falling back to `http://10.0.2.2:8181`.
+        variable, falling back to `http://127.0.0.1:8181`.
     timeout:
         Seconds to wait for OPA before failing closed (deny). Default 2.0.
     """
